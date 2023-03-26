@@ -8,6 +8,28 @@ import mainContext from "../MainContext";
 function Tweet() {
   const { name, username, isVerified, tweet, retweets, quoteTweets, likes } =
     useContext(mainContext);
+
+  const tweetFormat = (tweet) => {
+    tweet = tweet
+      .replace(/@([\w]+)/g, "<span>@$1</span>")
+      .replace(/#([\wşçöğüıİ]+)/gi, "<span>#$1</span>")
+      .replace(/(https?:\/\/[\w./?=]+)/, "<span>$1</span>");
+    return tweet;
+  };
+  const formatTweet = (number) => {
+    if (!number) {
+      number = 0;
+    }
+    if (number < 1000) {
+      return number;
+    }
+    number /= 1000;
+    number = String(number).split(".");
+    return (
+      number[0] + (number[1] > 100 ? "," + number[1].slice(0, 1) + " B" : " B")
+    );
+  };
+
   return (
     <div className="tweet-container">
       <div className="tweet">
@@ -25,17 +47,22 @@ function Tweet() {
           </div>
         </div>
         <div className="tweet-content">
-          <p>{tweet || "Bu alana örnek tweet gelecek"}</p>
+          <p
+            dangerouslySetInnerHTML={{
+              __html:
+                (tweet && tweetFormat(tweet)) || "Bu alana örnek tweet gelecek",
+            }}
+          />
         </div>
         <div className="tweet-stats">
           <span>
-            <b>{retweets}</b> Retweet
+            <b>{formatTweet(retweets)}</b> Retweet
           </span>
           <span>
-            <b>{quoteTweets}</b> Alıntı Tweetler
+            <b>{formatTweet(quoteTweets)}</b> Alıntı Tweetler
           </span>
           <span>
-            <b>{likes}</b> Beğeni
+            <b>{formatTweet(likes)}</b> Beğeni
           </span>
         </div>
         <div className="tweet-actions">

@@ -22,6 +22,10 @@ function App() {
     likes,
     setName,
     setUsername,
+    setTweet,
+    setRetweets,
+    setQuoteTweets,
+    setLikes,
   };
 
   return (
