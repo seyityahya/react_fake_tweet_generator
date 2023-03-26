@@ -1,23 +1,36 @@
+import { useState } from "react";
+import Setting from "./components/Setting";
+import Tweet from "./components/Tweet";
+import MainContext from "./MainContext";
 function App() {
+  const [name, setName] = useState();
+  const [username, setUsername] = useState();
+  const [isVerified, setIsVerified] = useState(false);
+  const [tweet, setTweet] = useState();
+  const [avatar, setAvatar] = useState();
+  const [retweets, setRetweets] = useState(0);
+  const [quoteTweets, setQuoteTweets] = useState(0);
+  const [likes, setLikes] = useState(0);
+
+  const data = {
+    name,
+    username,
+    isVerified,
+    tweet,
+    retweets,
+    quoteTweets,
+    likes,
+    setName,
+    setUsername,
+  };
+
   return (
-    <div className="tweet">
-      <div className="tweet-author">
-        <img
-          alt="seyityahya"
-          src="https://pbs.twimg.com/profile_images/1586885263204257800/GbgLBTGx_bigger.jpg"
-        />
-        <div>
-          <div className="name">Seyit Yahya</div>
-          <div className="username">seyityahya3</div>
-        </div>
-      </div>
-      <div className="tweet-content">
-        <p>
-          Bu bir tweetter uygulamasıdır ve buradan fake tweetler
-          üretilebilecektir.
-        </p>
-      </div>
-    </div>
+    <>
+      <MainContext.Provider value={data}>
+        <Setting />
+        <Tweet />
+      </MainContext.Provider>
+    </>
   );
 }
 
