@@ -20,12 +20,15 @@ function App() {
     retweets,
     quoteTweets,
     likes,
+    avatar,
     setName,
     setUsername,
     setTweet,
     setRetweets,
     setQuoteTweets,
     setLikes,
+    setAvatar,
+    setIsVerified,
   };
 
   return (

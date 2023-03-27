@@ -16,7 +16,17 @@ function Setting() {
     setName,
     setUsername,
     setTweet,
+    setAvatar,
   } = useContext(mainContext);
+
+  const avatarHandle = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.addEventListener("load", function () {
+      setAvatar(this.result);
+    });
+    reader.readAsDataURL(file);
+  };
   return (
     <div className="tweet-settings">
       <h3>Tweet Ayarları</h3>
@@ -49,6 +59,10 @@ function Setting() {
           />
         </li>
         <li>
+          <label>Avatar</label>
+          <input type="file" className="input" onChange={avatarHandle} />
+        </li>
+        <li>
           <label>Retweet</label>
           <input
             type="number"
@@ -75,6 +89,7 @@ function Setting() {
             onChange={(e) => setLikes(e.target.value)}
           />
         </li>
+        <button>Oluştur</button>
       </ul>
     </div>
   );

@@ -4,10 +4,19 @@ import { AiOutlineRetweet, AiOutlineHeart } from "react-icons/ai";
 import { IoShareOutline } from "react-icons/io5";
 import { MdVerified } from "react-icons/md";
 import mainContext from "../MainContext";
+import { AvatarLoader } from "./Loader";
 
 function Tweet() {
-  const { name, username, isVerified, tweet, retweets, quoteTweets, likes } =
-    useContext(mainContext);
+  const {
+    name,
+    username,
+    isVerified,
+    tweet,
+    retweets,
+    quoteTweets,
+    likes,
+    avatar,
+  } = useContext(mainContext);
 
   const tweetFormat = (tweet) => {
     tweet = tweet
@@ -34,10 +43,7 @@ function Tweet() {
     <div className="tweet-container">
       <div className="tweet">
         <div className="tweet-author">
-          <img
-            alt="seyityahya"
-            src="https://pbs.twimg.com/profile_images/1586885263204257800/GbgLBTGx_bigger.jpg"
-          />
+          {(avatar && <img alt="" src={avatar} />) || <AvatarLoader />}
           <div>
             <div className="name">
               {name || "Ad Soyad"}{" "}
