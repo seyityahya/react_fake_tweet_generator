@@ -11,6 +11,7 @@ function Setting() {
     quoteTweets,
     likes,
     image,
+    avatar,
     setRetweets,
     setQuoteTweets,
     setLikes,
@@ -62,6 +63,12 @@ function Setting() {
         </li>
         <li>
           <label>Avatar</label>
+          <input
+            type="text"
+            className="input"
+            value={avatar}
+            onChange={(e) => setAvatar(e.target.value)}
+          />
           <input type="file" className="input" onChange={avatarHandle} />
         </li>
         <li>

@@ -43,7 +43,7 @@ function Tweet() {
 
   return (
     <div className="tweet-container">
-      <div className="fetch-info">
+      {/* <div className="fetch-info">
         <input
           type="text"
           value={username}
@@ -51,7 +51,7 @@ function Tweet() {
           onChange={(e) => setUsername(e.target.value)}
         />
         <button>Bilgileri Çek</button>
-      </div>
+      </div> */}
       <div className="tweet" ref={tweetRef}>
         <div className="tweet-author">
           {(avatar && <img alt="" src={avatar} />) || <AvatarLoader />}
