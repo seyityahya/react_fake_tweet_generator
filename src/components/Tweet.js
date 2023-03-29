@@ -16,6 +16,8 @@ function Tweet() {
     quoteTweets,
     likes,
     avatar,
+    tweetRef,
+    setUsername,
   } = useContext(mainContext);
 
   const tweetFormat = (tweet) => {
@@ -41,7 +43,16 @@ function Tweet() {
 
   return (
     <div className="tweet-container">
-      <div className="tweet">
+      <div className="fetch-info">
+        <input
+          type="text"
+          value={username}
+          placeholder="Twitter kullanıcı adını yazın"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <button>Bilgileri Çek</button>
+      </div>
+      <div className="tweet" ref={tweetRef}>
         <div className="tweet-author">
           {(avatar && <img alt="" src={avatar} />) || <AvatarLoader />}
           <div>

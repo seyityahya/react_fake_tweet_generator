@@ -10,6 +10,7 @@ function Setting() {
     retweets,
     quoteTweets,
     likes,
+    image,
     setRetweets,
     setQuoteTweets,
     setLikes,
@@ -17,6 +18,7 @@ function Setting() {
     setUsername,
     setTweet,
     setAvatar,
+    getImage,
   } = useContext(mainContext);
 
   const avatarHandle = (e) => {
@@ -89,7 +91,14 @@ function Setting() {
             onChange={(e) => setLikes(e.target.value)}
           />
         </li>
-        <button>Oluştur</button>
+        <button onClick={getImage}>Oluştur</button>
+        <div className="download-url">
+          {image && (
+            <a href={image} download="tweet.png">
+              Tweeti indir
+            </a>
+          )}
+        </div>
       </ul>
     </div>
   );

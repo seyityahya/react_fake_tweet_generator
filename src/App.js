@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, createRef } from "react";
 import Setting from "./components/Setting";
 import Tweet from "./components/Tweet";
 import MainContext from "./MainContext";
+import { useScreenshot } from "use-react-screenshot";
 function App() {
   const [name, setName] = useState();
   const [username, setUsername] = useState();
@@ -11,6 +12,11 @@ function App() {
   const [retweets, setRetweets] = useState(0);
   const [quoteTweets, setQuoteTweets] = useState(0);
   const [likes, setLikes] = useState(0);
+  const [image, takeScreenshot] = useScreenshot();
+
+  const tweetRef = createRef(null);
+
+  const getImage = () => takeScreenshot(tweetRef.current);
 
   const data = {
     name,
@@ -21,14 +27,17 @@ function App() {
     quoteTweets,
     likes,
     avatar,
+    image,
     setName,
     setUsername,
     setTweet,
     setRetweets,
     setQuoteTweets,
     setLikes,
-    setAvatar,
     setIsVerified,
+    setAvatar,
+    tweetRef,
+    getImage,
   };
 
   return (
