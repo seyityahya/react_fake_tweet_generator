@@ -17,7 +17,6 @@ function Tweet() {
     likes,
     avatar,
     tweetRef,
-    setUsername,
   } = useContext(mainContext);
 
   const tweetFormat = (tweet) => {
